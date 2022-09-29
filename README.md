@@ -1,6 +1,6 @@
 # RustFire
 
-## Hearthstone emulator written in Rust.
+Hearthstone emulator written in Rust.
 
 ### This is a work in progress.
 
