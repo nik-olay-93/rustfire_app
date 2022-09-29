@@ -1,22 +1,20 @@
-use std::fmt::Error;
+use rustfire_core::{board::Board, minion::Minion};
 
-use rustfire_core::{
-    board::{Board, MinionSlot},
-    minions::generate_test_minion,
-};
-
-fn main() -> Result<(), Error> {
+fn main() -> Result<(), String> {
     let mut board = Board::new();
-    let minion = generate_test_minion();
-    board.summon_minion(&minion, 1)?;
 
-    if let Some(minionslot) = board.player1.minionslots.get_mut(0) {
-        match minionslot {
-            MinionSlot::Minion(minion) => {
-                println!("Minion: {}", minion.name);
-            }
-            MinionSlot::None => {}
-        }
-    }
+    let mut minion = Minion::test();
+
+    minion.on_summon = Some(|board, side, slot| {
+        if let Err(error) = board.summon_minion(Minion::test(), 2, 0) {
+            println!("{}", error);
+        };
+        println!("Summoned minion on slot {} of side {}", slot, side);
+    });
+
+    board.summon_minion(minion, 1, 0)?;
+
+    println!("{:?}", board);
+
     Ok(())
 }
