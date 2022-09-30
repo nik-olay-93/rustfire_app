@@ -89,7 +89,6 @@ dependencies = [
 [[package]]
 name = "rustfire_core"
 version = "0.0.1"
-source = "git+https://github.com/nik-olay-93/rustfire_core.git#c9b8da70dda676c3a0bb5b48bddcc9caf99a5ec5"
 dependencies = [
  "uuid",
 ]
